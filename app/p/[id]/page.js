@@ -1,4 +1,6 @@
 import { redis } from "@/lib/redis";
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function PastePage({ params }) {
   const paste = await redis.get(`paste:${params.id}`);
