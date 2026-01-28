@@ -33,7 +33,7 @@ export async function POST(req) {
 );
 
   return Response.json({
-    id,
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/p/${id}`,
-  });
+  id,
+  url: `/p/${id}`,
+});
 }
