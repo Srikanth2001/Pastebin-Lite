@@ -3,8 +3,8 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export default async function PastePage({ params }) {
-  const paste = await redis.get(`paste:${params.id}`);
-
+  const raw = await redis.get(`paste:${params.id}`);
+const paste = raw ? JSON.parse(raw) : null;
   if (!paste) {
     return <h1>404 – Paste not found</h1>;
   }

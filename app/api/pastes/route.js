@@ -21,13 +21,16 @@ export async function POST(req) {
 
   const id = crypto.randomBytes(6).toString("hex");
 
-  await redis.set(`paste:${id}`, {
+ await redis.set(
+  `paste:${id}`,
+  JSON.stringify({
     content: body.content,
     created_at: Date.now(),
     ttl_seconds: body.ttl_seconds ?? null,
     max_views: body.max_views ?? null,
     views: 0,
-  });
+  })
+);
 
   return Response.json({
     id,
